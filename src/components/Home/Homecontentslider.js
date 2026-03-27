@@ -1,77 +1,69 @@
-import React,{useRef} from 'react';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import React, { useRef } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import sliderImageOne from '../../assets/images/HomeSlider/Slide_1.jpeg';
 import sliderImageTwo from '../../assets/images/HomeSlider/Slide_2.jpeg';
 import sliderImageThree from '../../assets/images/HomeSlider/Slide_3.jpeg';
 import sliderImageFour from '../../assets/images/HomeSlider/Slide_4.jpeg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faArrowAltCircleLeft,
-    faArrowAltCircleRight,
-  } from '@fortawesome/free-regular-svg-icons';
-function Homecontentslider(props){
-    const sliderRef = useRef();
-    const TeamObj = [
-        {
-            bannerImage:sliderImageOne,
-            title:'MEP Coordination and BOQ',
-            description:""
-        },
-        {
-            bannerImage:sliderImageTwo,
-            title:'Facade Models',
-            description:""
-        },
-        {
-            bannerImage:sliderImageThree,
-            title:'MEP Models',
-            description:""
-        },
-        {
-            bannerImage:sliderImageFour,
-            title:'Structure Models',
-            description:""
-        }
-    ];
-    const settings = {
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      };
-      const next = () => {
-        sliderRef.current.slickNext();
-      }
-      const previous = () => {
-        sliderRef.current.slickPrev();
-      }
-      return (
-        <div className='home-content-slider'>
-        <div className='container'>
-          <h3 className='heading'>Engineering Solutions</h3>
-          <div className='arrow-styles'>
-          <FontAwesomeIcon icon={faArrowAltCircleLeft} onClick={previous} className="home-social-icons" />
-          <FontAwesomeIcon icon={faArrowAltCircleRight} onClick={next} className="home-social-icons" />
+
+const slides = [
+  { image: sliderImageOne,  title: 'MEP Coordination and BOQ' },
+  { image: sliderImageTwo,  title: 'Facade Models' },
+  { image: sliderImageThree,title: 'MEP Models' },
+  { image: sliderImageFour, title: 'Structure Models' },
+];
+
+function Homecontentslider() {
+  const sliderRef = useRef();
+
+  const settings = {
+    infinite: true,
+    speed: 600,
+    slidesToShow: 2,   // FIX: 4 items ÷ 2 = even, no partial trailing card
+    slidesToScroll: 1,
+    arrows: false,
+    dots: true,
+    responsive: [
+      { breakpoint: 768, settings: { slidesToShow: 1 } },
+    ],
+  };
+
+  return (
+    <section className="solutions-section">
+      <div className="container">
+        <div className="solutions-header">
+          <div>
+            <span className="section-label">Portfolio</span>
+            <h2 className="section-title" style={{ margin: 0 }}>Engineering Solutions</h2>
+          </div>
+          <div className="slider-nav-group">
+            <button className="slider-nav-btn" onClick={() => sliderRef.current.slickPrev()} aria-label="Previous">
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <button className="slider-nav-btn" onClick={() => sliderRef.current.slickNext()} aria-label="Next">
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          </div>
         </div>
-          <Slider ref={sliderRef} {...settings}>
-          {TeamObj.map((home)=>{
-                return(
-                    <div className="col-md-11">
-                        <div>
-                            <img className="home-content-img" src={home.bannerImage} alt=""/>
-                            <div className="home-caption">
-                                <h4>{home.title}</h4>
-                                <p>{home.description}</p>
-                            </div>
-                        </div>
-                    </div>
-            )}) }
-          </Slider>
-        </div>
-        </div>
-      );
+
+        <Slider ref={sliderRef} {...settings}>
+          {slides.map((slide, i) => (
+            <div key={i} className="solution-slide-card">
+              <div className="solution-slide-inner">
+                <img src={slide.image} alt={slide.title} />
+                <div className="solution-slide-caption">
+                  <h4>{slide.title}</h4>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </section>
+  );
 }
 
 export default Homecontentslider;

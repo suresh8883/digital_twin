@@ -1,26 +1,39 @@
-import React,{useState} from 'react';
-import {NavLink} from 'react-router-dom';
-import {Nav,Navbar} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
 import appLogo from '../assets/images/appLogo.png';
-function Navigation(){
-    return (
-    <Navbar className='bg-template-color nav-bar-style' fixed="top" expand='lg'>
-        <div className="container">
-        <Navbar.Brand className='position-relative logo-container' href="/">
-            <img
-                src={appLogo}
-                className="d-inline-block align-top logo-style"
-                alt="React Bootstrap logo"
-            />
+
+function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <Navbar
+      className={`nav-bar-style${scrolled ? ' scrolled' : ''}`}
+      fixed="top"
+      expand="lg"
+    >
+      <div className="container">
+        <Navbar.Brand href="/">
+          <img src={appLogo} className="logo-style" alt="Digital Twin Technologies" />
         </Navbar.Brand>
-        <Nav className="justify-content-end col-md-11 menu-nav">
-            <NavLink className="d-inline p-2 text-black pl-4 pr-4 nav-link" to='/about'> About </NavLink>
-            <NavLink className="d-inline p-2 text-black pl-4 pr-4 nav-link" to='/services'> Services </NavLink>
-            <NavLink className="d-inline p-2 text-black pl-4 pr-4 nav-link" to='/contactUs'> Contact Us </NavLink>
-        </Nav>
-        </div>
-        </Navbar>
-    )
+        <Navbar.Toggle aria-controls="main-nav" style={{ borderColor: 'var(--color-border)' }} />
+        <Navbar.Collapse id="main-nav">
+          <Nav className="ms-auto menu-nav">
+            <NavLink className="nav-link" activeClassName="active" to="/" exact>Home</NavLink>
+            <NavLink className="nav-link" activeClassName="active" to="/about">About</NavLink>
+            <NavLink className="nav-link" activeClassName="active" to="/services">Services</NavLink>
+            <NavLink className="nav-link" activeClassName="active" to="/contactUs">Contact Us</NavLink>
+          </Nav>
+        </Navbar.Collapse>
+      </div>
+    </Navbar>
+  );
 }
 
 export default Navigation;
