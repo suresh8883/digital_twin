@@ -18,6 +18,21 @@
       rel="stylesheet"
     />
     <title>Digital Twin Technologies</title>
+    <script type="text/javascript">
+      // Counterpart of public/404.html (rafgraph/spa-github-pages). When GitHub
+      // Pages serves 404.html for a deep link, it redirects here as /?/about.
+      // Before React Router mounts, turn that back into /about via
+      // history.replaceState so BrowserRouter renders the right page and the
+      // address bar shows the clean URL. No-op on a normal visit to /.
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Digital Twin Technologies</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA fallback (rafgraph/spa-github-pages).
+      // Pages serves this file for any path that is not a real file, so a direct
+      // visit or refresh on /about, /services or /contactUs lands here instead of
+      // the React app (BrowserRouter needs the server to serve index.html for every
+      // route, and Pages cannot do that). We stash the requested path in the query
+      // string and redirect to /, where the matching script in index.html restores
+      // the real URL before React Router mounts. The user sees the right page and
+      // the address bar keeps the clean URL.
+      // pathSegmentsToKeep = 0 because the site lives at the apex of a custom domain.
+      var pathSegmentsToKeep = 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
