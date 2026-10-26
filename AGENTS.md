@@ -63,10 +63,9 @@ Patterns: a new page = `src/components/<Name>/index.js` + a `<Route>` in `Route.
 the component, rendered by `.map`. Scroll-reveal: copy `useScrollReveal` from `ContentIcon.js`
 (a near-duplicate `useReveal` sits in `About/index.js`; consolidate if you touch both).
 
-Dead files, safe to ignore and not to build on: root `index.html` and root `CNAME` (CRA only
-uses `public/`), `src/ContactForm.php` (2021 PHP mailer, cannot run on Pages), `src/logo.svg`,
-`src/App.test.js` (stock CRA test asserting text the app no longer has), and the declared but
-never-imported deps `framer-motion`, `aos`, `jquery`, `popper.js`.
+Dead code was removed in PR # (2026-10-27): root `index.html`/`CNAME`, `src/ContactForm.php`,
+`src/logo.svg`, `src/App.test.js`, and the unused deps `framer-motion`, `aos`, `jquery`,
+`popper.js`. There are now no tests at all; `npm test` stays documented as not a gate.
 
 ## Environment quirks
 
@@ -93,7 +92,7 @@ never-imported deps `framer-motion`, `aos`, `jquery`, `popper.js`.
 - 2021-02 — CRA bootstrap by Karthik; 2021-07 hosting moved to GitHub Pages + custom domain,
   deploy via the `gh-pages` npm package (that is why it is a runtime dependency).
 - 2021-08 — contact form originally posted to `src/ContactForm.php` on a PHP host. Replaced
-  by `mailto:` in 2026; the PHP file is dead.
+  by `mailto:` in 2026; the PHP file was removed in PR #.
 - 2024-02 — this fork became the maintained copy (upstream last touched 2021-08).
 - 2026-03-27 — "Premium redesign": light theme, design tokens in `index.css`, hand-rolled hero
   slider, validated contact form, `usePageTitle`, `ScrollTop`. Deployed to `gh-pages` same day.
