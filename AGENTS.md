@@ -16,7 +16,7 @@ is no backend). Built 2021 by Karthik (upstream `thirumalai77/digital_twins`); t
 | Stack | Create React App `react-scripts 4.0.2` (webpack 4), React 17, `react-router-dom` 5 (BrowserRouter), `react-bootstrap` 1.6 on Bootstrap **4.6** CSS, `react-slick`, Font Awesome 5 (`@fortawesome/*-svg-icons`), plain CSS |
 | Entry points | `public/index.html` (shell, fonts, meta) → `src/index.js` → `src/App.js` → `src/components/Route.js` (routes) |
 | Node | 24 via mise (`eval "$(mise activate zsh --shims)"`); every webpack command below needs `NODE_OPTIONS=--openssl-legacy-provider` |
-| Install | `npm ci --legacy-peer-deps` (lockfile fixed in PR #; plain `npm ci` still trips on CRA 4 peer ranges) |
+| Install | `npm ci --legacy-peer-deps` (lockfile fixed in PR #2; plain `npm ci` still trips on CRA 4 peer ranges) |
 | Run locally | `NODE_OPTIONS=--openssl-legacy-provider npm start` → http://localhost:3000 |
 | Build | `NODE_OPTIONS=--openssl-legacy-provider npm run build` → `build/` (verified 2026-10-18, ~3 s) |
 | Test | `CI=true npm test -- --watchAll=false` — **broken** (see Environment quirks); not a gate |
@@ -63,7 +63,7 @@ Patterns: a new page = `src/components/<Name>/index.js` + a `<Route>` in `Route.
 the component, rendered by `.map`. Scroll-reveal: copy `useScrollReveal` from `ContentIcon.js`
 (a near-duplicate `useReveal` sits in `About/index.js`; consolidate if you touch both).
 
-Dead code was removed in PR # (2026-10-27): root `index.html`/`CNAME`, `src/ContactForm.php`,
+Dead code was removed in PR #2 (2026-10-27): root `index.html`/`CNAME`, `src/ContactForm.php`,
 `src/logo.svg`, `src/App.test.js`, and the unused deps `framer-motion`, `aos`, `jquery`,
 `popper.js`. There are now no tests at all; `npm test` stays documented as not a gate.
 
@@ -92,7 +92,7 @@ Dead code was removed in PR # (2026-10-27): root `index.html`/`CNAME`, `src/Cont
 - 2021-02 — CRA bootstrap by Karthik; 2021-07 hosting moved to GitHub Pages + custom domain,
   deploy via the `gh-pages` npm package (that is why it is a runtime dependency).
 - 2021-08 — contact form originally posted to `src/ContactForm.php` on a PHP host. Replaced
-  by `mailto:` in 2026; the PHP file was removed in PR #.
+  by `mailto:` in 2026; the PHP file was removed in PR #2.
 - 2024-02 — this fork became the maintained copy (upstream last touched 2021-08).
 - 2026-03-27 — "Premium redesign": light theme, design tokens in `index.css`, hand-rolled hero
   slider, validated contact form, `usePageTitle`, `ScrollTop`. Deployed to `gh-pages` same day.
