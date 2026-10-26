@@ -16,7 +16,7 @@ is no backend). Built 2021 by Karthik (upstream `thirumalai77/digital_twins`); t
 | Stack | Create React App `react-scripts 4.0.2` (webpack 4), React 17, `react-router-dom` 5 (BrowserRouter), `react-bootstrap` 1.6 on Bootstrap **4.6** CSS, `react-slick`, Font Awesome 5 (`@fortawesome/*-svg-icons`), plain CSS |
 | Entry points | `public/index.html` (shell, fonts, meta) → `src/index.js` → `src/App.js` → `src/components/Route.js` (routes) |
 | Node | 24 via mise (`eval "$(mise activate zsh --shims)"`); every webpack command below needs `NODE_OPTIONS=--openssl-legacy-provider` |
-| Install | `npm install --legacy-peer-deps` (`npm ci` fails: lockfile out of sync with npm 11 peer resolution) |
+| Install | `npm ci --legacy-peer-deps` (lockfile fixed in PR #; plain `npm ci` still trips on CRA 4 peer ranges) |
 | Run locally | `NODE_OPTIONS=--openssl-legacy-provider npm start` → http://localhost:3000 |
 | Build | `NODE_OPTIONS=--openssl-legacy-provider npm run build` → `build/` (verified 2026-10-18, ~3 s) |
 | Test | `CI=true npm test -- --watchAll=false` — **broken** (see Environment quirks); not a gate |
